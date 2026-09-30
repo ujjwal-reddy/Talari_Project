@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout & Payment — Talari Eco Packaging</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="checkout-page">
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand"><span class="brand-mark">T</span><span class="brand-name">Talari Eco Packaging</span></a>
+      <a href="index.html#products" class="btn btn-ghost small-btn">← Continue shopping</a>
+    </div>
+  </header>
+
+  <main class="container checkout">
+    <ol class="progress" id="progress">
+      <li class="active" data-step="1">Details</li>
+      <li data-step="2">Payment</li>
+      <li data-step="3">Confirmation</li>
+    </ol>
+
+    <div class="checkout-grid" id="checkoutGrid">
+      <div>
+        <!-- Step 1: customer & delivery details -->
+        <form class="card form step-panel" id="detailsForm" data-panel="1" novalidate>
+          <h2>Delivery details</h2>
+          <div class="row">
+            <label>Full name <input name="name" autocomplete="name" required /></label>
+            <label>Phone <input name="phone" type="tel" autocomplete="tel" pattern="[0-9 +\-]{10,15}" required /></label>
+          </div>
+          <div class="row">
+            <label>Email <input name="email" type="email" autocomplete="email" required /></label>
+            <label>Business / event name <span class="muted">(optional)</span><input name="company" /></label>
+          </div>
+          <label>Delivery address <textarea name="address" rows="2" autocomplete="street-address" required></textarea></label>
+          <div class="row">
+            <label>City <input name="city" autocomplete="address-level2" required /></label>
+            <label>PIN code <input name="pin" inputmode="numeric" pattern="[0-9]{6}" autocomplete="postal-code" required /></label>
+          </div>
+          <div class="row">
+            <label>Required by <input name="deliveryDate" type="date" /></label>
+            <label>GSTIN <span class="muted">(for GST invoice)</span><input name="gstin" maxlength="15" /></label>
+          </div>
+          <p class="form-msg error" id="detailsMsg" role="alert"></p>
+          <button class="btn btn-primary full" type="submit">Continue to payment</button>
+        </form>
+
+        <!-- Step 2: payment -->
+        <section class="card step-panel" id="paymentPanel" data-panel="2" hidden>
+          <div class="panel-head">
+            <h2>Choose payment method</h2>
+            <button class="link" id="backToDetails">Edit details</button>
+          </div>
+          <p class="muted small" id="deliverTo"></p>
+
+          <div class="pay-methods" role="radiogroup">
+            <label class="pay-option"><input type="radio" name="pay" value="upi" checked />
+              <span><strong>UPI</strong><small>GPay, PhonePe, Paytm, BHIM — scan & pay</small></span></label>
+            <label class="pay-option"><input type="radio" name="pay" value="online" />
+              <span><strong>Card / Net banking / Wallet</strong><small>Secure payment via Razorpay</small></span></label>
+            <label class="pay-option"><input type="radio" name="pay" value="bank" />
+              <span><strong>Bank transfer (NEFT / RTGS)</strong><small>Best for large wholesale orders</small></span></label>
+            <label class="pay-option"><input type="radio" name="pay" value="cod" />
+              <span><strong>Cash on delivery</strong><small>Available for orders up to ₹10,000</small></span></label>
+          </div>
+
+          <div class="pay-detail" data-method="upi">
+            <div class="upi-box">
+              <div id="upiQr" class="qr"></div>
+              <div>
+                <p>Scan with any UPI app or tap the button on your phone.</p>
+                <p class="small">UPI ID: <strong id="upiId"></strong></p>
+                <p class="small">Amount: <strong class="pay-amount"></strong></p>
+                <a class="btn btn-ghost" id="upiLink" href="#">Open UPI app</a>
+              </div>
+            </div>
+            <label>UPI transaction ID / UTR <span class="muted">(12 digits, shown after payment)</span>
+              <input id="utr" inputmode="numeric" maxlength="22" placeholder="e.g. 412345678901" />
+            </label>
+          </div>
+
+          <div class="pay-detail" data-method="online" hidden>
+            <p>You'll be taken to a secure Razorpay window to pay with debit/credit card, net banking or wallet.</p>
+            <p class="small muted" id="demoNote"></p>
+          </div>
+
+          <div class="pay-detail" data-method="bank" hidden>
+            <dl class="bank">
+              <dt>Account name</dt><dd>Talari Eco Packaging</dd>
+              <dt>Account no.</dt><dd>0000 0000 0000</dd>
+              <dt>IFSC</dt><dd>BANK0000000</dd>
+              <dt>Amount</dt><dd class="pay-amount"></dd>
+            </dl>
+            <label>Transfer reference number
+              <input id="bankRef" maxlength="30" />
+            </label>
+          </div>
+
+          <div class="pay-detail" data-method="cod" hidden>
+            <p>Pay in cash or UPI when your order is delivered. Custom printed orders need an advance payment and are not eligible for COD.</p>
+          </div>
+
+          <label class="check"><input type="checkbox" id="agree" /> I confirm the order details and agree to the terms of sale.</label>
+          <p class="form-msg error" id="payMsg" role="alert"></p>
+          <button class="btn btn-primary full" id="payBtn">Pay <span class="pay-amount"></span></button>
+          <p class="secure small muted">🔒 Payments are encrypted and processed securely.</p>
+        </section>
+
+        <!-- Step 3: confirmation -->
+        <section class="card step-panel confirm" id="confirmPanel" data-panel="3" hidden>
+          <div class="tick">✓</div>
+          <h2 id="confirmTitle">Order placed!</h2>
+          <p id="confirmText"></p>
+          <dl class="bank" id="confirmMeta"></dl>
+          <div class="confirm-actions">
+            <button class="btn btn-ghost" onclick="window.print()">Print receipt</button>
+            <a href="index.html" class="btn btn-primary">Back to home</a>
+          </div>
+        </section>
+
+        <section class="card empty-state" id="emptyState" hidden>
+          <h2>Your cart is empty</h2>
+          <p>Add some products before checking out.</p>
+          <a href="index.html#products" class="btn btn-primary">Browse products</a>
+        </section>
+      </div>
+
+      <!-- Order summary -->
+      <aside class="card summary" id="summary">
+        <h3>Order summary</h3>
+        <div id="summaryItems"></div>
+        <div class="sum-row"><span>Subtotal</span><span id="sumSubtotal"></span></div>
+        <div class="sum-row"><span>GST (18%)</span><span id="sumGst"></span></div>
+        <div class="sum-row"><span>Delivery</span><span id="sumDelivery"></span></div>
+        <div class="sum-row total"><span>Total</span><strong id="sumTotal"></strong></div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

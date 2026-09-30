@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Talari Eco Packaging — Disposable & Biodegradable Tableware</title>
+  <meta name="description" content="Manufacturer of disposable plates, cups, aluminium containers, custom printed tableware and biodegradable products for events, caterers and businesses." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#top" class="brand"><span class="brand-mark">T</span><span class="brand-name">Talari Eco Packaging</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#products">Products</a>
+        <a href="#custom">Customise</a>
+        <a href="#eco">Biodegradable</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="cart-btn" id="cartOpen" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+          <span>Cart</span><span class="badge" id="cartCount">0</span>
+        </button>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Manufacturer · Wholesale · Custom printing</p>
+          <h1>Plates, cups & containers for every event — in every size.</h1>
+          <p class="lead">We manufacture disposable plates, paper cups, aluminium food containers and fully biodegradable tableware. Order in bulk for weddings, parties, caterers and restaurants, or get them printed with your own design.</p>
+          <div class="hero-cta">
+            <a href="#products" class="btn btn-primary">Shop products</a>
+            <a href="#custom" class="btn btn-ghost">Request custom print</a>
+          </div>
+          <ul class="hero-points">
+            <li>Factory-direct prices</li>
+            <li>Free delivery above ₹5,000</li>
+            <li>Secure online payment</li>
+          </ul>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-card a1" data-icon="leaf"></div>
+          <div class="art-card a2" data-icon="cup"></div>
+          <div class="art-card a3" data-icon="container"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category strip -->
+    <section class="cats container" aria-label="Categories">
+      <a href="#products" data-cat="plates" class="cat"><strong>Disposable plates</strong><span>Round, partition & buffet</span></a>
+      <a href="#products" data-cat="cups" class="cat"><strong>Cups & glasses</strong><span>65 ml to 350 ml</span></a>
+      <a href="#products" data-cat="aluminium" class="cat"><strong>Aluminium containers</strong><span>Takeaway & catering</span></a>
+      <a href="#products" data-cat="bio" class="cat eco"><strong>Biodegradable</strong><span>Areca, bagasse & PLA</span></a>
+      <a href="#products" data-cat="custom" class="cat"><strong>Customised</strong><span>Your logo, any size</span></a>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Our products</h2>
+          <p>Choose a size and quantity, then add to your order. Prices are per piece, before GST.</p>
+        </div>
+        <div class="filters" id="filters" role="tablist"></div>
+        <div class="grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <!-- Custom order -->
+    <section id="custom" class="section alt">
+      <div class="container custom-grid">
+        <div>
+          <p class="eyebrow">Customisation</p>
+          <h2>Printed plates & cups, made for your event</h2>
+          <p>Add your logo, the couple's names, a brand message or an event theme. We print on plates and cups in any size — from 65 ml tea cups to 12" buffet plates.</p>
+          <ol class="steps">
+            <li><strong>Tell us what you need</strong> — product, size, quantity and date.</li>
+            <li><strong>Share your design</strong> — upload a logo or describe the idea.</li>
+            <li><strong>Approve the proof</strong> — we send a digital mock-up within 24 hours.</li>
+            <li><strong>Pay & receive</strong> — production starts once payment is confirmed.</li>
+          </ol>
+        </div>
+        <form class="card form" id="customForm" novalidate>
+          <h3>Customise your order</h3>
+          <label>Product
+            <select name="product" id="customProduct" required></select>
+          </label>
+          <div class="row">
+            <label>Size
+              <select name="size" id="customSize" required></select>
+            </label>
+            <label>Quantity
+              <input type="number" name="qty" id="customQty" min="500" step="50" value="500" required />
+            </label>
+          </div>
+          <div class="row">
+            <label>Print colours
+              <select name="colours">
+                <option>1 colour</option>
+                <option>2 colours</option>
+                <option>Full colour</option>
+              </select>
+            </label>
+            <label>Event date
+              <input type="date" name="eventDate" />
+            </label>
+          </div>
+          <label>Text to print (names, brand, message)
+            <input type="text" name="printText" maxlength="80" placeholder="e.g. Ravi weds Priya · 12 Dec 2026" />
+          </label>
+          <label>Logo / artwork <span class="muted">(optional, PNG/JPG/PDF)</span>
+            <input type="file" name="artwork" accept=".png,.jpg,.jpeg,.pdf,.svg" />
+          </label>
+          <label>Notes
+            <textarea name="notes" rows="2" placeholder="Colours, placement, theme…"></textarea>
+          </label>
+          <p class="price-line">Estimated: <strong id="customEstimate">—</strong> <span class="muted">+ GST</span></p>
+          <button class="btn btn-primary full" type="submit">Add custom order to cart</button>
+          <p class="form-msg" id="customMsg" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Eco -->
+    <section id="eco" class="section eco-band">
+      <div class="container eco-grid">
+        <div>
+          <p class="eyebrow light">Biodegradable range</p>
+          <h2>Serve more, waste less.</h2>
+          <p>Our areca-leaf and sugarcane-bagasse tableware is made from agricultural by-products. It's strong enough for hot and oily food, and returns to the soil within months instead of centuries.</p>
+          <a href="#products" data-cat="bio" class="btn btn-light">Shop biodegradable</a>
+        </div>
+        <ul class="eco-stats">
+          <li><strong>90 days</strong><span>to compost bagasse plates</span></li>
+          <li><strong>0%</strong><span>plastic in areca leaf plates</span></li>
+          <li><strong>100%</strong><span>food-safe & chemical-free</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Events -->
+    <section id="events" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Built for events of every size</h2>
+          <p>Bulk supply, on-time delivery and packaging that matches the occasion.</p>
+        </div>
+        <div class="features">
+          <div class="feature"><h3>Weddings & functions</h3><p>Partition plates, printed cups and serving trays for 100 to 10,000 guests.</p></div>
+          <div class="feature"><h3>Caterers & restaurants</h3><p>Aluminium containers and bowls for takeaway, delivery and cloud kitchens.</p></div>
+          <div class="feature"><h3>Corporate & brands</h3><p>Branded cups and plates for offices, launches, expos and cafés.</p></div>
+          <div class="feature"><h3>Temples & community</h3><p>Areca leaf plates and bagasse bowls for prasadam and annadanam.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section alt">
+      <div class="container contact-grid">
+        <div>
+          <h2>Need a bulk quote?</h2>
+          <p>For orders above 10,000 pieces or special sizes, contact us directly for wholesale pricing.</p>
+          <ul class="contact-list" id="contactList"></ul>
+        </div>
+        <form class="card form" id="enquiryForm">
+          <h3>Send an enquiry</h3>
+          <div class="row">
+            <label>Name <input name="name" required /></label>
+            <label>Phone <input name="phone" type="tel" required /></label>
+          </div>
+          <label>Message <textarea name="message" rows="3" required placeholder="Products, quantities, delivery city…"></textarea></label>
+          <button class="btn btn-primary full" type="submit">Send enquiry</button>
+          <p class="form-msg" id="enquiryMsg" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span id="year"></span> Talari Eco Packaging. All rights reserved.</p>
+      <p class="muted">Disposable · Aluminium · Customised · Biodegradable</p>
+    </div>
+  </footer>
+
+  <!-- Cart drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="drawer" id="cartDrawer" aria-label="Your cart" aria-hidden="true">
+    <div class="drawer-head">
+      <h3>Your order</h3>
+      <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
+    </div>
+    <div class="drawer-body" id="cartItems"></div>
+    <div class="drawer-foot">
+      <div class="sum-row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div>
+      <p class="muted small">GST and delivery are calculated at checkout.</p>
+      <a href="checkout.html" class="btn btn-primary full" id="checkoutBtn">Proceed to checkout</a>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

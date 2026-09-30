@@ -1,0 +1,167 @@
+// Product catalogue. Prices are per piece in INR; each size can have its own price.
+window.CATEGORIES = [
+  { id: "all", label: "All products" },
+  { id: "plates", label: "Disposable plates" },
+  { id: "cups", label: "Cups & glasses" },
+  { id: "aluminium", label: "Aluminium containers" },
+  { id: "bio", label: "Biodegradable" },
+  { id: "custom", label: "Customised" },
+];
+
+window.PRODUCTS = [
+  {
+    id: "paper-plate-round",
+    category: "plates",
+    name: "Round Paper Plates",
+    desc: "Sturdy, leak-resistant plates for everyday meals and large gatherings.",
+    icon: "plate",
+    minQty: 100,
+    sizes: [
+      { label: '7" (quarter plate)', price: 0.9 },
+      { label: '10" (full plate)', price: 1.4 },
+      { label: '12" (buffet plate)', price: 1.9 },
+    ],
+  },
+  {
+    id: "partition-plate",
+    category: "plates",
+    name: "Partition Plates (3 & 4 compartment)",
+    desc: "Compartment plates for thali-style meals, weddings and catering.",
+    icon: "partition",
+    minQty: 100,
+    sizes: [
+      { label: '10" – 3 compartment', price: 2.2 },
+      { label: '12" – 4 compartment', price: 2.9 },
+    ],
+  },
+  {
+    id: "paper-cup",
+    category: "cups",
+    name: "Paper Cups",
+    desc: "Food-grade coated cups for tea, coffee, juice and water.",
+    icon: "cup",
+    minQty: 200,
+    sizes: [
+      { label: "65 ml (tea)", price: 0.45 },
+      { label: "150 ml", price: 0.7 },
+      { label: "250 ml", price: 1.1 },
+      { label: "350 ml", price: 1.5 },
+    ],
+  },
+  {
+    id: "double-wall-cup",
+    category: "cups",
+    name: "Double-Wall Hot Cups",
+    desc: "Insulated cups that stay cool to hold — ideal for cafés and events.",
+    icon: "cup",
+    minQty: 100,
+    sizes: [
+      { label: "250 ml", price: 3.2 },
+      { label: "350 ml", price: 3.9 },
+    ],
+  },
+  {
+    id: "alu-container",
+    category: "aluminium",
+    name: "Aluminium Food Containers with Lid",
+    desc: "Oven-safe, airtight containers for takeaway, catering and meal delivery.",
+    icon: "container",
+    minQty: 100,
+    sizes: [
+      { label: "250 ml", price: 4.5 },
+      { label: "450 ml", price: 5.8 },
+      { label: "750 ml", price: 7.5 },
+      { label: "1000 ml", price: 9.0 },
+    ],
+  },
+  {
+    id: "alu-tray",
+    category: "aluminium",
+    name: "Aluminium Serving Trays",
+    desc: "Large trays for biryani, bulk cooking and buffet service.",
+    icon: "tray",
+    minQty: 25,
+    sizes: [
+      { label: "Half size", price: 22 },
+      { label: "Full size", price: 38 },
+    ],
+  },
+  {
+    id: "areca-plate",
+    category: "bio",
+    name: "Areca Leaf Plates",
+    desc: "Natural palm-leaf plates. 100% compostable, chemical-free and elegant.",
+    icon: "leaf",
+    minQty: 100,
+    sizes: [
+      { label: '6" round', price: 2.5 },
+      { label: '8" round', price: 3.5 },
+      { label: '10" round', price: 4.8 },
+      { label: '10" square', price: 5.2 },
+    ],
+  },
+  {
+    id: "bagasse-plate",
+    category: "bio",
+    name: "Bagasse (Sugarcane) Plates & Bowls",
+    desc: "Made from sugarcane fibre. Microwave-safe and compostable in 90 days.",
+    icon: "leaf",
+    minQty: 100,
+    sizes: [
+      { label: '180 ml bowl', price: 1.8 },
+      { label: '8" plate', price: 2.4 },
+      { label: '10" plate', price: 3.2 },
+      { label: '12" 3-compartment plate', price: 4.4 },
+    ],
+  },
+  {
+    id: "bio-cup",
+    category: "bio",
+    name: "Compostable PLA-lined Cups",
+    desc: "Plastic-free lining that breaks down in industrial composting.",
+    icon: "cup",
+    minQty: 200,
+    sizes: [
+      { label: "150 ml", price: 1.2 },
+      { label: "250 ml", price: 1.7 },
+    ],
+  },
+  {
+    id: "custom-plate",
+    category: "custom",
+    name: "Custom Printed Plates",
+    desc: "Your logo, names or event theme printed on plates of any size.",
+    icon: "plate",
+    minQty: 500,
+    customisable: true,
+    sizes: [
+      { label: '7"', price: 1.8 },
+      { label: '10"', price: 2.6 },
+      { label: '12"', price: 3.4 },
+    ],
+  },
+  {
+    id: "custom-cup",
+    category: "custom",
+    name: "Custom Printed Cups",
+    desc: "Branded cups for weddings, corporate events, cafés and promotions.",
+    icon: "cup",
+    minQty: 500,
+    customisable: true,
+    sizes: [
+      { label: "150 ml", price: 1.4 },
+      { label: "250 ml", price: 2.1 },
+      { label: "350 ml", price: 2.7 },
+    ],
+  },
+];
+
+// Simple inline SVG illustrations so the site needs no image files.
+window.PRODUCT_ICONS = {
+  plate: `<svg viewBox="0 0 120 120" aria-hidden="true"><ellipse cx="60" cy="66" rx="50" ry="22" fill="#e9e4d8"/><ellipse cx="60" cy="62" rx="50" ry="22" fill="#fff" stroke="#cfc6b3" stroke-width="2"/><ellipse cx="60" cy="62" rx="32" ry="13" fill="none" stroke="#e2dbcb" stroke-width="2"/></svg>`,
+  partition: `<svg viewBox="0 0 120 120" aria-hidden="true"><ellipse cx="60" cy="66" rx="50" ry="22" fill="#e9e4d8"/><ellipse cx="60" cy="62" rx="50" ry="22" fill="#fff" stroke="#cfc6b3" stroke-width="2"/><path d="M60 40 V62 M60 62 L28 76 M60 62 L92 76" stroke="#cfc6b3" stroke-width="3" fill="none"/></svg>`,
+  cup: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M34 30 L86 30 L78 100 L42 100 Z" fill="#fff" stroke="#cfc6b3" stroke-width="2"/><ellipse cx="60" cy="30" rx="26" ry="6" fill="#f3efe6" stroke="#cfc6b3" stroke-width="2"/><path d="M37 52 L83 52 L80 74 L40 74 Z" fill="#2f7a4f" opacity=".85"/></svg>`,
+  container: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M20 54 L100 54 L92 94 L28 94 Z" fill="#d7dbe0" stroke="#a9b0b8" stroke-width="2"/><rect x="16" y="42" width="88" height="12" rx="3" fill="#eef0f2" stroke="#a9b0b8" stroke-width="2"/><path d="M34 64 L86 64" stroke="#fff" stroke-width="3" opacity=".7"/></svg>`,
+  tray: `<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M12 50 L108 50 L98 84 L22 84 Z" fill="#d7dbe0" stroke="#a9b0b8" stroke-width="2"/><path d="M22 58 L98 58 M24 66 L96 66 M26 74 L94 74" stroke="#c3c8ce" stroke-width="2"/></svg>`,
+  leaf: `<svg viewBox="0 0 120 120" aria-hidden="true"><ellipse cx="60" cy="66" rx="50" ry="22" fill="#c9a877"/><ellipse cx="60" cy="62" rx="50" ry="22" fill="#e6cc9c" stroke="#b8935c" stroke-width="2"/><path d="M24 58 Q60 70 96 58 M30 66 Q60 76 90 66" stroke="#c9a877" stroke-width="2" fill="none"/><path d="M74 20 C96 22 100 42 88 50 C74 48 68 34 74 20 Z" fill="#2f7a4f"/></svg>`,
+};
